@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  mb-arena-schedule-api:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-10-20T18:11:35.787178665Z"
+    description: A Helm chart for Kubernetes containing the mercedes benz arena schedule
+      api
+    digest: 8957f860fef984f8ccb7427588cd6f524adf9849974367df40c0676d8599c2db
+    name: mb-arena-schedule-api
+    type: application
+    urls:
+    - https://github.com/jo-hoe/mb-arena-service/releases/download/mb-arena-schedule-api-0.0.1/mb-arena-schedule-api-0.0.1.tgz
+    version: 0.0.1
+generated: "2023-10-20T18:11:35.787183765Z"

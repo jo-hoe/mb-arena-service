@@ -1,0 +1,10 @@
+version: "3"
+services:
+  mercedes-benz-arena-service:
+    build: .
+    image: mercedes-benz-arena-service
+    stdin_open: true
+    tty: true
+    ports:
+      # external:internal
+      - "8081:80"

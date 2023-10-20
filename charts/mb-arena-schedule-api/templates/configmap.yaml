@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mb-arena-schedule-api.fullname" . }}-config
+  labels:
+    {{- include "mb-arena-schedule-api.labels" . | nindent 4 }}
+data:
+  CACHE_UPDATE_CRON: "{{ .Values.cacheUpdateCronInterval }}"
+  API_PORT: "{{ .Values.service.port }}"

@@ -7,7 +7,9 @@
 [![CodeQL Status](https://github.com/jo-hoe/mb-arena-service/workflows/CodeQL/badge.svg)](https://github.com/jo-hoe/mb-arena-service/actions?workflow=CodeQL)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jo-hoe/mb-arena-service)](https://goreportcard.com/report/github.com/jo-hoe/mb-arena-service)
 
-Spiders the events from the mercedes benz arena in berlin and provides them via API
+Spiders the events from the mercedes benz arena in berlin and provides them via API.
+
+> **Caution:** the API is still unstable and WILL change.
 
 ## Linting
 
@@ -29,5 +31,10 @@ in the working directory
 
 ## ToDo
 
-- release image (e.g. via docker packages)
-- create helm chart and reference the image
+- add docu for
+  - helm chart
+  - services
+  - how to release
+- code
+  - add tests for main
+  - fix json property naming (lower case)

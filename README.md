@@ -32,9 +32,7 @@ in the working directory
 ## ToDo
 
 - add docu for
-  - helm chart
   - services
   - how to release
 - code
   - add tests for main
-  - fix json property naming (lower case)

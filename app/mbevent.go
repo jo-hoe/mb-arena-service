@@ -5,8 +5,8 @@ import (
 )
 
 type MBEvent struct {
-	Name       string
-	Link       string
-	PictureUrl string
-	Start      time.Time
+	Name       string    `json:"name"`
+	Link       string    `json:"link"`
+	PictureUrl string    `json:"pictureUrl"`
+	Start      time.Time `json:"start"`
 }

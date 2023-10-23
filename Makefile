@@ -1,5 +1,7 @@
 .DEFAULT_GOAL := all
 
+ROOT_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+
 .PHONY: all
 all: create helm-install
 
@@ -29,3 +31,7 @@ helm-test:
 .PHONY: helm-install
 helm-install:
 	@helm install  mb-arena-schedule-api ./charts/mb-arena-schedule-api/
+
+.PHONY: generate-helm-docs
+generate-helm-docs:
+	@docker run --rm --volume "$(ROOT_DIR)/charts:/helm-docs" jnorwood/helm-docs:latest

@@ -1,5 +1,9 @@
 name: Release Charts
 
+# to release via github
+# - bump the appVersion and chartVersion in the Chart.yaml 
+# - create a new release in github and tag it with new version number
+# the version number should conform to the regex below 
 on:
   push:    
     tags:

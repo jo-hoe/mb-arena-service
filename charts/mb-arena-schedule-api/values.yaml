@@ -4,7 +4,7 @@
 
 # -- Event data is cached, this setting describes
 # how often the cache will be updated.
-# The default is set to once a day at 02:00 AM
+# The default is set to once a day at 02:00 AM.
 cacheUpdateCronInterval: "0 2 * * *"
 
 replicaCount: 1

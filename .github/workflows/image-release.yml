@@ -1,5 +1,4 @@
-# https://josephrodriguezg.medium.com/build-and-publish-docker-images-with-github-actions-78be3b3fbb9b
-# https://docs.github.com/en/enterprise-cloud@latest/actions/publishing-packages/publishing-docker-images
+# New images are release just by adding a new tag
 
 name: Release Image
 on:

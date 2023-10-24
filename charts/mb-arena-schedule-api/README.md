@@ -1,6 +1,6 @@
 # mb-arena-schedule-api
 
-![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes containing the mercedes benz arena schedule api
 
@@ -13,7 +13,7 @@ A Helm chart for Kubernetes containing the mercedes benz arena schedule api
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| cacheUpdateCronInterval | string | `"0 2 * * *"` | Event data is cached, this setting describes how often the cache will be updated. The default is set to once a day at 02:00 AM |
+| cacheUpdateCronInterval | string | `"0 2 * * *"` | Event data is cached, this setting describes how often the cache will be updated. The default is set to once a day at 02:00 AM. |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/jo-hoe/mb-arena-service"` |  |

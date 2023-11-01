@@ -4,7 +4,7 @@ go 1.21.2
 
 require (
 	github.com/antchfx/htmlquery v1.3.0
-	github.com/go-co-op/gocron v1.35.2
+	github.com/go-co-op/gocron v1.35.3
 	github.com/gorilla/mux v1.8.0
 	golang.org/x/net v0.17.0
 )

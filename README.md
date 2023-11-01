@@ -7,7 +7,7 @@
 [![CodeQL Status](https://github.com/jo-hoe/mb-arena-service/workflows/CodeQL/badge.svg)](https://github.com/jo-hoe/mb-arena-service/actions?workflow=CodeQL)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jo-hoe/mb-arena-service)](https://goreportcard.com/report/github.com/jo-hoe/mb-arena-service)
 
-Spiders the events from the mercedes benz arena in berlin and provides them via API.
+Service that scrapes the [events from the Mercedes Benz Arena website](https://www.mercedes-benz-arena-berlin.de/events-tickets) and provides the details via API.
 
 ## Pre-requisites
 
@@ -15,13 +15,13 @@ Spiders the events from the mercedes benz arena in berlin and provides them via 
 
 ## Execution
 
-You can run the server just with golang.
+You can run the server just with Golang.
 
 ```bash
 go run .
 ```
 
-Or instead use docker.
+Or instead, use docker.
 
 ```bash
 docker-compose up
@@ -29,11 +29,11 @@ docker-compose up
 
 ## Configuration
 
-The project can be adapted with environment variables. The following variables are available.
+The project can be configured with environment variables. The following variables are available.
 
 | Key | Default | Description |
 |-----|---------|-------------|
-|CACHE_UPDATE_CRON|0 2 * * *|Event data is cached, this setting describes how often the cache will be updated. The default is set to once a day at 02:00 AM|
+|CACHE_UPDATE_CRON|0 2 * * *|Event data is cached to lower the impact on the website. This setting describes how often the cache will be updated. The default is set to once a day at 02:00 AM|
 |API_PORT|80|Port on with the API will listen|
 
 ## API Documentation
@@ -60,7 +60,7 @@ Provides on GET endpoint on a predefined port and will return a set of events.
 
 ## Linting
 
-Project used `golangci-lint` for linting.
+The project used `golangci-lint` for linting.
 
 ### Installation
 
@@ -68,7 +68,7 @@ Project used `golangci-lint` for linting.
 
 ### Run Linting
 
-Run the linting locally by executing
+Run the linting locally by executing.
 
 ```cli
 golangci-lint run ./...

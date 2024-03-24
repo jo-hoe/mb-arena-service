@@ -64,7 +64,7 @@ The project used `golangci-lint` for linting.
 
 ### Installation
 
-<https://golangci-lint.run/usage/install/>
+<https://golangci-lint.run/welcome/install/>
 
 ### Run Linting
 

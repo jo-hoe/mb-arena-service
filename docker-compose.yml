@@ -1,8 +1,7 @@
-version: "3"
 services:
-  mercedes-benz-arena-service:
+  uber-arena-service:
     build: .
-    image: mercedes-benz-arena-service
+    image: uber-arena-service
     stdin_open: true
     tty: true
     ports:

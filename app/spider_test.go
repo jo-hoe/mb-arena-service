@@ -47,8 +47,8 @@ func Test_Spider_item(t *testing.T) {
 		t.Errorf("found '%s', but expected '%s'", testItem.Start, expectedTime)
 	}
 	assert(t, testItem.Name, "50 Cent")
-	assert(t, testItem.PictureUrl, "https://www.mercedes-benz-arena-berlin.de/assets/img/AnOp_50_Cent_MBA_WS_460x205px_01_58-d2a8f966b7.jpg")
-	assert(t, testItem.Link, "https://www.mercedes-benz-arena-berlin.de/en/events/detail/50-cent/2023-10-14-1900")
+	assert(t, testItem.PictureUrl, "https://www.uber-arena.de/assets/img/AnOp_50_Cent_MBA_WS_460x205px_01_58-d2a8f966b7.jpg")
+	assert(t, testItem.Link, "https://www.uber-arena.de/en/events/detail/50-cent/2023-10-14-1900")
 }
 
 func assert(t *testing.T, actual string, expected string) {

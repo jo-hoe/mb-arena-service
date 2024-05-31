@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	HOST       = "https://www.mercedes-benz-arena-berlin.de"
+	HOST       = "https://www.uber-arena.de"
 	ALL_EVENTS = HOST + "/en/events-tickets/"
 	ASSET_PATH = HOST + "/assets/img/"
 )

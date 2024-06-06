@@ -75,3 +75,7 @@ golangci-lint run ./...
 ```
 
 in the working directory
+
+## Future Work
+
+- One can include also the Uber Eats Hall, as the parsing is largely the same

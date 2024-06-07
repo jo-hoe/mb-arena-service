@@ -14,9 +14,12 @@ import (
 )
 
 var (
-	HOST       = "https://www.uber-arena.de"
-	ALL_EVENTS = HOST + "/en/events-tickets/"
-	ASSET_PATH = HOST + "/assets/img/"
+	ARENA      = "https://www.uber-arena.de"
+	HALL       = "https://www.uber-eats-music-hall.de"
+	ALL_EVENTS = "/en/events-tickets/"
+
+	ARENA_NAME = "Uber Arena"
+	HALL_NAME  = "Uber Eats Music Hall"
 )
 
 var (
@@ -29,13 +32,29 @@ var (
 	XPATH_HOURS = "//span[@class='m-date__hour']"
 )
 
+var replacer = strings.NewReplacer(
+	"jan", "01",
+	"feb", "02",
+	"mar", "03",
+	"apr", "04",
+	"may", "05",
+	"jun", "06",
+	"jul", "07",
+	"aug", "08",
+	"sep", "09",
+	"oct", "10",
+	"nov", "11",
+	"dec", "12",
+)
+
 var nonNumericRegex = regexp.MustCompile(`[^0-9]+`)
+var nonAlphabeticRegex = regexp.MustCompile(`[^A-Za-z]+`)
 var timeRegex = regexp.MustCompile(`([0-9]{2}):([0-9]{2})`)
 
-func Spider(httpClient *http.Client) (result []MBEvent, err error) {
-	result = make([]MBEvent, 0)
+func Spider(httpClient *http.Client, host string) (result []Event, err error) {
+	result = make([]Event, 0)
 
-	responseString, err := getResponseAsString(httpClient, ALL_EVENTS)
+	responseString, err := getResponseAsString(httpClient, fmt.Sprintf("%s%s", host, ALL_EVENTS))
 	if err != nil {
 		return result, err
 	}
@@ -53,52 +72,70 @@ func Spider(httpClient *http.Client) (result []MBEvent, err error) {
 
 		imageElements := htmlquery.Find(eventHtml, XPATH_IMAGE)
 		imageUrl := getAttribute(imageElements[0], "src")
-		imageUrl = strings.Replace(imageUrl, "./Events _ Mercedes-Benz Arena Berlin_files/", ASSET_PATH, 1)
 
 		yearElements := htmlquery.Find(eventHtml, XPATH_YEAR)
-		year := clearString(getInnerText(yearElements[0]))
+		year := clearNumericString(getInnerText(yearElements[0]))
 
 		monthElements := htmlquery.Find(eventHtml, XPATH_MONTH)
-		month := clearString(getInnerText(monthElements[0]))
+		month := ""
+		if host == ARENA {
+			month = clearNumericString(getInnerText(monthElements[0]))
+		}
+		if host == HALL {
+			month = clearString(getInnerText(monthElements[0]))
+			month = replacer.Replace(strings.ToLower(month))
+		}
 
 		dayElements := htmlquery.Find(eventHtml, XPATH_DAY)
-		day := clearString(getInnerText(dayElements[0]))
+		day := clearNumericString(getInnerText(dayElements[0]))
 
 		hourElements := htmlquery.Find(eventHtml, XPATH_HOURS)
 		hours := getInnerText(hourElements[0])
 		timeElements := timeRegex.FindStringSubmatch(hours)
 
 		var timestamp time.Time
-		location, err := time.LoadLocation("Europe/Berlin")
+		region, err := time.LoadLocation("Europe/Berlin")
 		if err != nil {
 			log.Printf("could not load time location, error: %+v", err)
 			continue
 		}
 		if len(timeElements) == 3 {
 			// time was available
-			timestamp, err = time.ParseInLocation(time.DateTime, fmt.Sprintf("%s-%s-%s %s:%s:00", year, month, day, timeElements[1], timeElements[2]), location)
+			timestamp, err = time.ParseInLocation(time.DateTime, fmt.Sprintf("%s-%s-%s %s:%s:00", year, month, day, timeElements[1], timeElements[2]), region)
 		} else {
 			// not time available
-			timestamp, err = time.ParseInLocation(time.DateOnly, fmt.Sprintf("%s-%s-%s", year, month, day), location)
+			timestamp, err = time.ParseInLocation(time.DateOnly, fmt.Sprintf("%s-%s-%s", year, month, day), region)
 		}
 		if err != nil {
 			log.Printf("could not read time for event '%s', error: %+v", title, err)
 			continue
 		}
 
-		result = append(result, MBEvent{
+		location := ""
+		if host == HALL {
+			location = HALL_NAME
+		} else if host == ARENA {
+			location = ARENA_NAME
+		}
+
+		result = append(result, Event{
 			Name:       title,
 			Link:       link,
 			PictureUrl: imageUrl,
 			Start:      timestamp,
+			Location:   location,
 		})
 	}
 
 	return result, nil
 }
 
-func clearString(str string) string {
+func clearNumericString(str string) string {
 	return nonNumericRegex.ReplaceAllString(str, "")
+}
+
+func clearString(str string) string {
+	return nonAlphabeticRegex.ReplaceAllString(str, "")
 }
 
 func getAttribute(node *html.Node, attributeName string) (result string) {

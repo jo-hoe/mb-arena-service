@@ -7,8 +7,11 @@ import (
 	"net/http"
 )
 
-//go:embed testsite.html
-var HTMLTestFile string
+//go:embed arena_test_site.html
+var ArenaHTMLTestFile string
+
+//go:embed hall_test_site.html
+var HallHTMLTestFile string
 
 type ResponseSummery struct {
 	ResponseCode int
@@ -30,14 +33,14 @@ func NewMockClient(fn RoundTripFunc) *http.Client {
 	}
 }
 
-func CreateMockClient(summeries ...ResponseSummery) *http.Client {
+func CreateMockClient(summaries ...ResponseSummery) *http.Client {
 	i := -1
 	return NewMockClient(func(_ *http.Request) *http.Response {
 		i = i + 1
 		return &http.Response{
-			StatusCode: summeries[i].ResponseCode,
+			StatusCode: summaries[i].ResponseCode,
 			// Send response to be tested
-			Body: io.NopCloser(bytes.NewBufferString(summeries[i].ResponseBody)),
+			Body: io.NopCloser(bytes.NewBufferString(summaries[i].ResponseBody)),
 			// Must be set to non-nil value or it panics
 			Header: make(http.Header),
 		}

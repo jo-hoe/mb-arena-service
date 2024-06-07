@@ -14,7 +14,7 @@ import (
 	"github.com/jo-hoe/mb-arena-service/app"
 )
 
-var cache = make([]app.MBEvent, 0)
+var cache = make([]app.Event, 0)
 
 func main() {
 	// schedule periodic updates
@@ -35,20 +35,27 @@ func scheduleUpdates() {
 
 func updateItems() {
 	log.Print("updating events")
-	items, err := app.Spider(http.DefaultClient)
+	areaItems, err := app.Spider(http.DefaultClient, app.ARENA)
 	if err != nil {
-		log.Printf("could not spider events, error: %+v", err)
+		log.Printf("could not spider events for arena, error: %+v", err)
 	}
 
-	sort.Slice(items, func(i, j int) bool {
-		return items[i].Start.Unix() < items[j].Start.Unix()
+	hallItems, err := app.Spider(http.DefaultClient, app.HALL)
+	if err != nil {
+		log.Printf("could not spider events for hall, error: %+v", err)
+	}
+
+	allItems := append(areaItems, hallItems...)
+
+	sort.Slice(allItems, func(i, j int) bool {
+		return allItems[i].Start.Unix() < allItems[j].Start.Unix()
 	})
 
-	if len(items) == 0 {
+	if len(allItems) == 0 {
 		log.Print("no events to add")
 	} else {
-		cache = items
-		log.Printf("added %d events to cache", len(items))
+		cache = allItems
+		log.Printf("added %d events to cache", len(allItems))
 	}
 }
 

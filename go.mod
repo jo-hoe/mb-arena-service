@@ -6,7 +6,7 @@ require (
 	github.com/antchfx/htmlquery v1.3.1
 	github.com/go-co-op/gocron v1.37.0
 	github.com/gorilla/mux v1.8.1
-	golang.org/x/net v0.25.0
+	golang.org/x/net v0.26.0
 )
 
 require (

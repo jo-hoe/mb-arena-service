@@ -1,6 +1,6 @@
 module github.com/jo-hoe/mb-arena-service
 
-go 1.21.2
+go 1.22
 
 require (
 	github.com/antchfx/htmlquery v1.3.1

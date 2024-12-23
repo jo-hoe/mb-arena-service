@@ -3,10 +3,10 @@ module github.com/jo-hoe/mb-arena-service
 go 1.22
 
 require (
-	github.com/antchfx/htmlquery v1.3.3
+	github.com/antchfx/htmlquery v1.3.4
 	github.com/go-co-op/gocron v1.37.0
 	github.com/gorilla/mux v1.8.1
-	golang.org/x/net v0.32.0
+	golang.org/x/net v0.33.0
 )
 
 require (

@@ -1,13 +1,13 @@
 module github.com/jo-hoe/mb-arena-service
 
 go 1.22
-toolchain go1.23.7
+toolchain go1.24.1
 
 require (
 	github.com/antchfx/htmlquery v1.3.4
 	github.com/go-co-op/gocron v1.37.0
 	github.com/gorilla/mux v1.8.1
-	golang.org/x/net v0.37.0
+	golang.org/x/net v0.38.0
 )
 
 require (

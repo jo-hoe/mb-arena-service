@@ -112,9 +112,10 @@ func Spider(httpClient *http.Client, host string) (result []Event, err error) {
 		}
 
 		location := ""
-		if host == HALL {
+		switch host {
+		case HALL:
 			location = HALL_NAME
-		} else if host == ARENA {
+		case ARENA:
 			location = ARENA_NAME
 		}
 

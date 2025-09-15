@@ -8,7 +8,7 @@ require (
 	github.com/antchfx/htmlquery v1.3.4
 	github.com/go-co-op/gocron v1.37.0
 	github.com/gorilla/mux v1.8.1
-	golang.org/x/net v0.43.0
+	golang.org/x/net v0.44.0
 )
 
 require (

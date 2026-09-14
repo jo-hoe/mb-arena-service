@@ -1,6 +1,6 @@
 module github.com/jo-hoe/mb-arena-service
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/antchfx/htmlquery v1.3.6
@@ -15,5 +15,5 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
-	golang.org/x/text v0.41.0 // indirect
+	golang.org/x/text v0.42.0 // indirect
 )
